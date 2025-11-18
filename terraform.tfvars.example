@@ -1,0 +1,70 @@
+# ==============================================================================
+# Example Terraform Variables Configuration
+# ==============================================================================
+# Copy this file to terraform.tfvars and customize the values for your deployment
+
+# Project Configuration
+project_name = "infracode-eks"
+environment  = "dev"
+aws_region   = "us-west-2"
+
+# EKS Cluster Configuration
+kubernetes_version              = "1.28"
+cluster_endpoint_public_access = true
+
+# Node Group Configuration
+node_instance_types     = ["m5.large"]
+node_group_min_size     = 1
+node_group_max_size     = 3
+node_group_desired_size = 2
+node_ami_type          = "AL2_x86_64"
+node_capacity_type     = "ON_DEMAND"
+node_disk_size         = 20
+
+# SSH Access (optional - set to true and provide key name if needed)
+enable_node_ssh_access = false
+node_ssh_key_name      = ""
+
+# Network Configuration
+single_nat_gateway = true
+
+# Workstation Access (optional - for kubectl access from specific IPs)
+enable_workstation_access = false
+workstation_cidr_blocks   = ["0.0.0.0/0"]
+
+# Fargate (optional)
+enable_fargate = false
+
+# Add-ons Configuration (optional)
+enable_external_dns           = false
+external_dns_hosted_zone_arns = []
+
+enable_cert_manager           = false
+cert_manager_hosted_zone_arns = []
+
+enable_additional_policy = false
+
+# ==============================================================================
+# Example Production Configuration
+# ==============================================================================
+# Uncomment and modify for production use:
+#
+# project_name = "myapp-eks"
+# environment  = "prod"
+# aws_region   = "us-east-1"
+#
+# kubernetes_version              = "1.28"
+# cluster_endpoint_public_access = false
+#
+# node_instance_types     = ["m5.xlarge", "m5.2xlarge"]
+# node_group_min_size     = 2
+# node_group_max_size     = 10
+# node_group_desired_size = 3
+# node_capacity_type     = "ON_DEMAND"
+# node_disk_size         = 50
+#
+# single_nat_gateway = false  # Use multiple NAT gateways for HA
+#
+# enable_fargate = true
+# enable_external_dns = true
+# enable_cert_manager = true
